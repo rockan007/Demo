@@ -1,6 +1,7 @@
 package com.lostbug.demo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.lostbug.demo.map.baidu.LocationActivity;
 
 import java.util.List;
 
@@ -73,10 +76,18 @@ public class DemoFragment extends Fragment {
         private ImageView mImageView;
         private TextView mTextView;
 
-        public DemoHolder(LayoutInflater inflater, ViewGroup parent) {
+        public DemoHolder(final LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.grid_demo_item, parent, false));
             mImageView = itemView.findViewById(R.id.demo_image);
             mTextView = itemView.findViewById(R.id.demo_name);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), LocationActivity.class);
+                    startActivity(intent);
+
+                }
+            });
         }
 
         public void bind(DemoItem item) {
